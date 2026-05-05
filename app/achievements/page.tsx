@@ -105,10 +105,10 @@ function getProgress(achievementId: string, stats: ReturnType<typeof buildStats>
 
 function buildStats(completedWorkouts: any[], meals: any[], user: any) {
   const totalCalories = completedWorkouts.reduce((s, w) => s + (w.caloriesBurned || w.calories || 0), 0)
-  const challenges = JSON.parse(localStorage.getItem("levfit_daily_challenges") || "[]")
+  const challenges = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("levfit_daily_challenges") || "[]") : []
   const challengesCompleted = challenges.filter((c: any) => c.completed).length
-  const waterGoalDays = parseInt(localStorage.getItem("water_goal_days") || "0")
-  const quizDone = !!localStorage.getItem("biology_profile")
+  const waterGoalDays = typeof window !== "undefined" ? parseInt(localStorage.getItem("water_goal_days") || "0") : 0
+  const quizDone = typeof window !== "undefined" && !!localStorage.getItem("biology_profile")
 
   return {
     totalWorkouts: completedWorkouts.length,
@@ -169,7 +169,7 @@ export default function AchievementsPage() {
 
   if (!user || !stats) return null
 
-  const unlockedIds: string[] = JSON.parse(localStorage.getItem("unlocked_achievements") || "[]")
+  const unlockedIds: string[] = typeof window !== "undefined" ? JSON.parse(localStorage.getItem("unlocked_achievements") || "[]") : []
   const unlockedCount = unlockedIds.length
   const totalCount = ALL_ACHIEVEMENTS.length
 

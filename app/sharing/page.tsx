@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { useApp } from "@/contexts/app-context"
 import { TopBar, NavBar } from "@/components/levfit/nav-bar"
 import { GlassCard } from "@/components/ui/glass-card"
-import { Share2, Copy, Check, Trophy, Flame, Dumbbell, Zap, Star } from "lucide-react"
+import { Share2, Copy, Check, Trophy, Flame, Dumbbell, Zap } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export default function SharingPage() {
@@ -13,9 +13,15 @@ export default function SharingPage() {
   const { user, completedWorkouts } = useApp()
   const [copied, setCopied] = useState(false)
   const [selectedCard, setSelectedCard] = useState<"progresso" | "conquista" | "desafio">("progresso")
+  const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>([])
 
   const totalCalories = completedWorkouts.reduce((s, w) => s + (w.caloriesBurned || w.calories || 0), 0)
-  const unlockedAchievements = JSON.parse(localStorage.getItem("unlocked_achievements") || "[]")
+
+  // localStorage só no cliente
+  useEffect(() => {
+    const achievements = JSON.parse(localStorage.getItem("unlocked_achievements") || "[]")
+    setUnlockedAchievements(achievements)
+  }, [])
 
   const shareCards = {
     progresso: {
@@ -92,7 +98,7 @@ Transformação real começa em levfit.pro 🚀`,
           <button onClick={() => router.push("/dashboard")} className="p-2 rounded-lg hover:bg-muted/50">×</button>
         </div>
 
-        {/* Stats do usuário */}
+        {/* Stats */}
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-secondary/10 border border-secondary/20 rounded-2xl p-3 text-center">
             <Dumbbell className="w-4 h-4 text-secondary mx-auto mb-1" />
@@ -138,7 +144,7 @@ Transformação real começa em levfit.pro 🚀`,
           </div>
         </div>
 
-        {/* Preview do texto */}
+        {/* Preview */}
         <GlassCard className="p-4">
           <div className="flex items-center justify-between mb-3">
             <p className="text-sm font-semibold">Preview</p>
@@ -157,38 +163,19 @@ Transformação real começa em levfit.pro 🚀`,
           </pre>
         </GlassCard>
 
-        {/* Botões de compartilhamento */}
+        {/* Botões */}
         <div className="space-y-2">
           <p className="text-sm font-semibold text-muted-foreground">Compartilhar em</p>
-
-          <button
-            onClick={() => handleShare("whatsapp")}
-            className="w-full py-3.5 rounded-xl bg-green-500/20 border border-green-500/30 text-green-400 font-semibold flex items-center justify-center gap-3 hover:bg-green-500/30 transition-colors"
-          >
-            <span className="text-xl">📱</span>
-            WhatsApp
+          <button onClick={() => handleShare("whatsapp")} className="w-full py-3.5 rounded-xl bg-green-500/20 border border-green-500/30 text-green-400 font-semibold flex items-center justify-center gap-3 hover:bg-green-500/30 transition-colors">
+            <span className="text-xl">📱</span> WhatsApp
           </button>
-
-          <button
-            onClick={() => handleShare("telegram")}
-            className="w-full py-3.5 rounded-xl bg-blue-500/20 border border-blue-500/30 text-blue-400 font-semibold flex items-center justify-center gap-3 hover:bg-blue-500/30 transition-colors"
-          >
-            <span className="text-xl">✈️</span>
-            Telegram
+          <button onClick={() => handleShare("telegram")} className="w-full py-3.5 rounded-xl bg-blue-500/20 border border-blue-500/30 text-blue-400 font-semibold flex items-center justify-center gap-3 hover:bg-blue-500/30 transition-colors">
+            <span className="text-xl">✈️</span> Telegram
           </button>
-
-          <button
-            onClick={() => handleShare("twitter")}
-            className="w-full py-3.5 rounded-xl bg-muted/30 border border-border/50 text-foreground font-semibold flex items-center justify-center gap-3 hover:bg-muted/50 transition-colors"
-          >
-            <span className="text-xl">🐦</span>
-            Twitter / X
+          <button onClick={() => handleShare("twitter")} className="w-full py-3.5 rounded-xl bg-muted/30 border border-border/50 text-foreground font-semibold flex items-center justify-center gap-3 hover:bg-muted/50 transition-colors">
+            <span className="text-xl">🐦</span> Twitter / X
           </button>
-
-          <button
-            onClick={handleCopy}
-            className="w-full py-3.5 rounded-xl bg-secondary/20 border border-secondary/30 text-secondary font-semibold flex items-center justify-center gap-3 hover:bg-secondary/30 transition-colors"
-          >
+          <button onClick={handleCopy} className="w-full py-3.5 rounded-xl bg-secondary/20 border border-secondary/30 text-secondary font-semibold flex items-center justify-center gap-3 hover:bg-secondary/30 transition-colors">
             {copied ? <><Check className="w-5 h-5" />Copiado!</> : <><Copy className="w-5 h-5" />Copiar texto</>}
           </button>
         </div>
@@ -198,3 +185,6 @@ Transformação real começa em levfit.pro 🚀`,
     </div>
   )
 }
+
+
+

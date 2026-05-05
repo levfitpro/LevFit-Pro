@@ -19,11 +19,14 @@ const STORAGE_KEY = "levfit_progress_photos"
 
 function getPhotos(): ProgressPhoto[] {
   if (typeof window === "undefined") return []
-  const data = localStorage.getItem(STORAGE_KEY)
-  return data ? JSON.parse(data) : []
+  try {
+    const data = localStorage.getItem(STORAGE_KEY)
+    return data ? JSON.parse(data) : []
+  } catch { return [] }
 }
 
 function savePhotos(photos: ProgressPhoto[]) {
+  if (typeof window === "undefined") return
   localStorage.setItem(STORAGE_KEY, JSON.stringify(photos))
 }
 
@@ -299,3 +302,4 @@ export default function ProgressPhotosPage() {
     </div>
   )
 }
+
