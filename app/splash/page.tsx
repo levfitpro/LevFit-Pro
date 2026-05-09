@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import { useRouter } from "next/navigation"
-import { Dumbbell } from "lucide-react"
 import { getUser } from "@/lib/user-store"
 
 export default function SplashScreen() {
@@ -10,7 +9,6 @@ export default function SplashScreen() {
   const [progress, setProgress] = React.useState(0)
 
   React.useEffect(() => {
-    // Animate progress bar
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -21,7 +19,6 @@ export default function SplashScreen() {
       })
     }, 30)
 
-    // Navigate after animation
     const timer = setTimeout(() => {
       const user = getUser()
       if (user) {
@@ -60,10 +57,9 @@ export default function SplashScreen() {
 
       {/* Main content */}
       <div className="relative z-10 text-center space-y-8">
-        {/* Logo with animation */}
-        <div className="relative">
-          {/* Outer ring */}
-          <div className="absolute inset-0 w-32 h-32 mx-auto">
+        {/* Logo */}
+        <div className="relative flex items-center justify-center">
+          <div className="absolute inset-0 w-56 h-56 mx-auto">
             <svg className="w-full h-full animate-spin-slow" viewBox="0 0 100 100">
               <circle
                 cx="50"
@@ -73,36 +69,22 @@ export default function SplashScreen() {
                 stroke="url(#gradient)"
                 strokeWidth="1"
                 strokeDasharray="10 5"
-                className="opacity-50"
+                className="opacity-30"
               />
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#00C1D4" />
-                  <stop offset="100%" stopColor="#F8B400" />
+                  <stop offset="0%" stopColor="#2EECC5" />
+                  <stop offset="100%" stopColor="#0A8F6E" />
                 </linearGradient>
               </defs>
             </svg>
           </div>
 
-          {/* Logo container */}
-          <div className="w-32 h-32 mx-auto rounded-3xl bg-gradient-to-br from-secondary via-secondary/80 to-accent flex items-center justify-center animate-scale-in shadow-2xl shadow-secondary/30">
-            <Dumbbell className="w-16 h-16 text-background animate-pulse" />
-          </div>
-        </div>
-
-        {/* App name with staggered animation */}
-        <div className="space-y-2">
-          <h1 className="text-4xl font-bold animate-fade-up" style={{ animationDelay: "300ms" }}>
-            <span className="text-secondary neon-text-cyan">Lev</span>
-            <span className="text-foreground">Fit</span>
-            <span className="text-accent"> Pro</span>
-          </h1>
-          <p
-            className="text-muted-foreground animate-fade-up text-sm tracking-widest uppercase"
-            style={{ animationDelay: "500ms" }}
-          >
-            Transforme seu corpo
-          </p>
+          <img
+            src="/splash-logo.png"
+            alt="LevFit Pro"
+            className="w-56 h-56 object-contain animate-scale-in drop-shadow-[0_0_30px_rgba(46,236,197,0.4)]"
+          />
         </div>
 
         {/* Loading bar */}
