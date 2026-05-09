@@ -20,7 +20,7 @@ export default function WelcomePage() {
 
   const features = [
     { icon: Brain, title: "IA Inteligente", desc: "Planos personalizados com inteligencia artificial" },
-    { icon: Dumbbell, title: "Treinos Adaptativos", desc: "Exercicios que evoluem com voce" },
+    { icon: Zap, title: "Treinos Adaptativos", desc: "Exercicios que evoluem com voce" },
     { icon: Trophy, title: "Gamificacao", desc: "Conquistas, XP e recompensas diarias" },
     { icon: Zap, title: "Resultados Rapidos", desc: "Acompanhe seu progresso em tempo real" },
   ]
