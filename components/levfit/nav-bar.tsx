@@ -3,17 +3,18 @@ import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 import {
-  Home, Dumbbell, Apple, TrendingUp, Trophy,
+  Home, Apple, TrendingUp, Trophy,
   Settings, User, History, BarChart3, Zap,
   Video, BookOpen, Calculator, Brain, Share2,
   Droplet, MoreHorizontal, X,
 } from "lucide-react"
+import Image from "next/image"
 import { RemindersPanel } from "./reminders-panel"
 import { useState } from "react"
 
 const primaryNav = [
   { href: "/dashboard",  icon: Home,       label: "Início"    },
-  { href: "/workouts",   icon: Dumbbell,   label: "Treinos"   },
+  { href: "/workouts",   icon: Home,       label: "Treinos"   },
   { href: "/nutrition",  icon: Apple,      label: "Nutrição"  },
   { href: "/progress",   icon: TrendingUp, label: "Progresso" },
   { href: "/challenges", icon: Zap,        label: "Desafios"  },
@@ -122,13 +123,15 @@ export function TopBar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/50">
       <div className="flex items-center justify-between px-4 py-3 max-w-lg mx-auto">
-        <div className="cursor-pointer" onClick={() => router.push("/dashboard")}>
-          <img
-            src="/topbar-logo.png"
-            alt="LevFit Pro"
-            className="h-8 w-auto object-contain"
-          />
-        </div>
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => router.push("/dashboard")}>
+            <Image
+              src="/topbar-logo.png"
+              alt="LevFit Pro"
+              width={110}
+              height={32}
+              priority
+              style={{ objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(0,193,212,0.4))" }}
+            />
         <div className="flex items-center gap-1">
           <RemindersPanel />
           <Link href="/settings" className="p-2 rounded-lg hover:bg-muted/50 transition-colors">
@@ -142,3 +145,4 @@ export function TopBar() {
     </header>
   )
 }
+
