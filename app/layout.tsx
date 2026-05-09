@@ -8,6 +8,10 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "LevFit Pro",
   description: "Seu app de fitness personalizado com IA",
+  icons: {
+    icon: "/icone.png",
+    apple: "/icone.png",
+  },
 }
 
 export default function RootLayout({
@@ -25,4 +29,3 @@ export default function RootLayout({
     </html>
   )
 }
-
