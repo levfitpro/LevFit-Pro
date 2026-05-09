@@ -3,7 +3,8 @@
 import * as React from "react"
 import { useRouter } from "next/navigation"
 import { getUser } from "@/lib/user-store"
-import { Dumbbell, Zap, Trophy, Brain } from "lucide-react"
+import { Zap, Trophy, Brain } from "lucide-react"
+import Image from "next/image"
 import { NeonButton } from "@/components/ui/neon-button"
 import { GlassCard } from "@/components/ui/glass-card"
 
@@ -37,8 +38,15 @@ export default function WelcomePage() {
         <div className="animate-fade-up space-y-6 max-w-md">
           {/* Logo */}
           <div className="flex items-center justify-center gap-3 mb-8">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary to-accent flex items-center justify-center animate-float">
-              <Dumbbell className="w-9 h-9 text-background" />
+            <div className="animate-float">
+              <Image
+                src="/icone.png"
+                alt="LevFit Pro"
+                width={72}
+                height={72}
+                priority
+                style={{ borderRadius: 18, filter: "drop-shadow(0 0 12px rgba(0,193,212,0.5))" }}
+              />
             </div>
           </div>
 
@@ -86,3 +94,4 @@ export default function WelcomePage() {
     </main>
   )
 }
+
