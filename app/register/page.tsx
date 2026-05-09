@@ -4,7 +4,8 @@ import * as React from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { createUser, getUser } from "@/lib/user-store"
-import { Dumbbell, Mail, Lock, User, ArrowLeft, CheckCircle2, XCircle } from "lucide-react"
+import { Mail, Lock, User, ArrowLeft, CheckCircle2, XCircle } from "lucide-react"
+import Image from "next/image"
 import { NeonButton } from "@/components/ui/neon-button"
 import { CyberInput } from "@/components/ui/cyber-input"
 import { GlassCard } from "@/components/ui/glass-card"
@@ -98,9 +99,14 @@ export default function RegisterPage() {
       <section className="flex-1 flex flex-col items-center justify-center px-6 py-8 relative z-10">
         <div className="w-full max-w-sm animate-fade-up">
           <div className="flex flex-col items-center gap-4 mb-8">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary to-accent flex items-center justify-center">
-              <Dumbbell className="w-9 h-9 text-background" />
-            </div>
+            <Image
+                src="/icone.png"
+                alt="LevFit Pro"
+                width={72}
+                height={72}
+                priority
+                style={{ borderRadius: 18, filter: "drop-shadow(0 0 12px rgba(0,193,212,0.5))" }}
+              />
             <h1 className="text-2xl font-bold">Criar Conta</h1>
             <p className="text-muted-foreground text-center">Comece sua transformação fitness hoje</p>
           </div>
@@ -165,4 +171,5 @@ export default function RegisterPage() {
     </main>
   )
 }
+
 
