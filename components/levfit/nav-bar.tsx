@@ -122,14 +122,12 @@ export function TopBar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/50">
       <div className="flex items-center justify-between px-4 py-3 max-w-lg mx-auto">
-        <div className="flex items-center gap-2 cursor-pointer" onClick={() => router.push("/dashboard")}>
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-secondary to-accent flex items-center justify-center">
-            <Dumbbell className="w-5 h-5 text-background" />
-          </div>
-          <span className="font-bold text-lg">
-            Lev<span className="text-foreground">Fit</span>
-            <span className="text-secondary"> Pro</span>
-          </span>
+        <div className="cursor-pointer" onClick={() => router.push("/dashboard")}>
+          <img
+            src="/topbar-logo.png"
+            alt="LevFit Pro"
+            className="h-8 w-auto object-contain"
+          />
         </div>
         <div className="flex items-center gap-1">
           <RemindersPanel />
