@@ -127,8 +127,8 @@ export function TopBar() {
             <Image
               src="/topbar-logo.png"
               alt="LevFit Pro"
-              width={160}
-              height={46}
+              width={200}
+              height={58}
               priority
               style={{ objectFit: "contain", filter: "drop-shadow(0 0 8px rgba(0,193,212,0.5))" }}
             />
