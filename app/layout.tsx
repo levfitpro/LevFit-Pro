@@ -9,8 +9,8 @@ export const metadata: Metadata = {
   title: "LevFit Pro",
   description: "Seu app de fitness personalizado com IA",
   icons: {
-    icon: "/icone.png",
-    apple: "/icone.png",
+    icon: "/icon.png",
+    apple: "/icon.png",
   },
 }
 
@@ -29,3 +29,6 @@ export default function RootLayout({
     </html>
   )
 }
+
+
+
