@@ -132,7 +132,8 @@ export function TopBar() {
               priority
               style={{ objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(0,193,212,0.4))" }}
             />
-        <div className="flex items-center gap-1">
+          </div>
+          <div className="flex items-center gap-1">
           <RemindersPanel />
           <Link href="/settings" className="p-2 rounded-lg hover:bg-muted/50 transition-colors">
             <Settings className="w-5 h-5 text-muted-foreground" />
