@@ -127,10 +127,10 @@ export function TopBar() {
             <Image
               src="/topbar-logo.png"
               alt="LevFit Pro"
-              width={110}
-              height={32}
+              width={160}
+              height={46}
               priority
-              style={{ objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(0,193,212,0.4))" }}
+              style={{ objectFit: "contain", filter: "drop-shadow(0 0 8px rgba(0,193,212,0.5))" }}
             />
           </div>
           <div className="flex items-center gap-1">
